@@ -36,6 +36,8 @@ function setup() {
       position: createVector(random(width), random(height)),
       // Randomly select a color from the colors array
       color: color(random(colors)) 
+    
+
     });
   }
 
@@ -114,12 +116,13 @@ function draw() {
     let p = particles[i];
     // Color fill for particle
     //fill(sliderData[0]* 255,sliderData[1]* 255,sliderData[2]* 255); 
-    fill(sliderData[0]* 255,sliderData[1]* 255,sliderData[2]* 255); 
+    fill(sliderData[0]* 500,sliderData[1]* 500,sliderData[2]* 500); 
     // Drawn an ellipse at the particle's position for visualisation 
-    ellipse(p.position.x, p.position.y, 3);
-    
+    ellipse(p.position.x, p.position.y, 10 * sliderData[6]);
+
     // Calculate noise value for current particle's position and frame count
-    let n = noise(p.position.x * noiseScale, p.position.y * noiseScale, frameCount * noiseScale * noiseScale);
+    let n = noise(p.position.x * noiseScale + sliderData[5], p.position.y * noiseScale + sliderData[5], frameCount * noiseScale * noiseScale + sliderData[5]);
+    n = n * sliderData[7];
     // Apply swirl effect factor by calculating the angle of swirl based on noise value and frame count
     let angle = TAU * n + frameCount * swirlFactor * sliderData[4]; 
     // Calculating the radius with variation using noise function and the frame count
