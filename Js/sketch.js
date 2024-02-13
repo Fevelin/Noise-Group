@@ -25,7 +25,7 @@ const swirlFactor = 0.20;
 
 function setup() {
     // Using the window width and height to create the canvas so it is full screen
-  createCanvas(760,1050);
+  createCanvas(950,1080);
   WebMidi
         .enable()
         .then(onEnabled)
