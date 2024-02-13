@@ -25,7 +25,7 @@ const swirlFactor = 0.20;
 
 function setup() {
     // Using the window width and height to create the canvas so it is full screen
-  createCanvas(940,1050);
+  createCanvas(760,1050);
   WebMidi
         .enable()
         .then(onEnabled)
@@ -137,6 +137,9 @@ function draw() {
       p.position.y = random(height);
     }
   }
+  // rect(0, 0, width, height);
+  // line(width/2, width, height/2);
+
 
   }
   
