@@ -14,7 +14,7 @@ const sliderData = [0,0,0,0,0,0,0,0];
 // To store an array of particle objects
 let particles = [];
 // Number of particles
-const num = 1000;
+const num = 100;
 // List of color array
 const colors = ["#EEEEEE", "#32E0C4", "#0D7377", "#212121", "#33C6FF"]; 
 
@@ -110,26 +110,33 @@ function draw() {
   for(let i = 0;i < sliderData.length;i++){
     console.log(sliderData[0])
     // Setting background color with a low opacity to create a trailing effect
-  background(0, 10);
-  for (let i = 0; i < num; i++) {
+  background(0, 50);
+  for (let i = 0; i < num * sliderData[1]; i++) {
     // Getting the current particle object
     let p = particles[i];
     // Color fill for particle
     //fill(sliderData[0]* 255,sliderData[1]* 255,sliderData[2]* 255); 
-    fill(sliderData[1]* 500,sliderData[2]* 500,sliderData[3]* 500); 
+    fill(sliderData[2]* 500,sliderData[3]* 500,sliderData[4]* 500); 
     // Drawn an ellipse at the particle's position for visualisation 
+
+    // SCALE OF DOTS
     ellipse(p.position.x, p.position.y, 10 * sliderData[0]);
 
-    // Calculate noise value for current particle's position and frame count
-    let n = noise(p.position.x * noiseScale + sliderData[7], p.position.y * noiseScale + sliderData[7], frameCount * noiseScale * noiseScale + sliderData[7]);
-    n = n * sliderData[5];
+    // Calculate noise value for current particle's position and frame count 
+    // AMOUNT OF PARTICLES
+    let n = noise(p.position.x * noiseScale + sliderData[1], p.position.y * noiseScale + sliderData[1], frameCount * noiseScale * noiseScale + sliderData[1]);
+    // SWIRL EFFECT
+    n = n * sliderData[6];
     // Apply swirl effect factor by calculating the angle of swirl based on noise value and frame count
-    let angle = TAU * n + frameCount * swirlFactor * sliderData[6]; 
+
+    // WAVE DIRECTION
+    let angle = TAU * n + frameCount * swirlFactor * sliderData[7]; 
     // Calculating the radius with variation using noise function and the frame count
     let radius = 3 + 20 * noise(frameCount * 0.01 + i); 
     // Updating the particle's position by moving it with swirling effect
-    p.position.x += cos(angle) * radius * sliderData[4]; 
-    p.position.y += sin(angle) * radius * sliderData[4];
+    // SPEED
+    p.position.x += cos(angle) * radius * sliderData[5]; 
+    p.position.y += sin(angle) * radius * sliderData[5];
   
     // Checking if particles is off-screen, if true, reset its position to a random location within canvas
     if (!onScreen(p.position)) {
