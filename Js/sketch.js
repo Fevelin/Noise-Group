@@ -25,7 +25,7 @@ const swirlFactor = 0.20;
 
 function setup() {
     // Using the window width and height to create the canvas so it is full screen
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(940,1050);
   WebMidi
         .enable()
         .then(onEnabled)
@@ -116,20 +116,20 @@ function draw() {
     let p = particles[i];
     // Color fill for particle
     //fill(sliderData[0]* 255,sliderData[1]* 255,sliderData[2]* 255); 
-    fill(sliderData[0]* 500,sliderData[1]* 500,sliderData[2]* 500); 
+    fill(sliderData[1]* 500,sliderData[2]* 500,sliderData[3]* 500); 
     // Drawn an ellipse at the particle's position for visualisation 
-    ellipse(p.position.x, p.position.y, 10 * sliderData[6]);
+    ellipse(p.position.x, p.position.y, 10 * sliderData[0]);
 
     // Calculate noise value for current particle's position and frame count
-    let n = noise(p.position.x * noiseScale + sliderData[5], p.position.y * noiseScale + sliderData[5], frameCount * noiseScale * noiseScale + sliderData[5]);
-    n = n * sliderData[7];
+    let n = noise(p.position.x * noiseScale + sliderData[7], p.position.y * noiseScale + sliderData[7], frameCount * noiseScale * noiseScale + sliderData[7]);
+    n = n * sliderData[5];
     // Apply swirl effect factor by calculating the angle of swirl based on noise value and frame count
-    let angle = TAU * n + frameCount * swirlFactor * sliderData[4]; 
+    let angle = TAU * n + frameCount * swirlFactor * sliderData[6]; 
     // Calculating the radius with variation using noise function and the frame count
     let radius = 3 + 20 * noise(frameCount * 0.01 + i); 
     // Updating the particle's position by moving it with swirling effect
-    p.position.x += cos(angle) * radius * sliderData[3]; 
-    p.position.y += sin(angle) * radius * sliderData[3];
+    p.position.x += cos(angle) * radius * sliderData[4]; 
+    p.position.y += sin(angle) * radius * sliderData[4];
   
     // Checking if particles is off-screen, if true, reset its position to a random location within canvas
     if (!onScreen(p.position)) {
