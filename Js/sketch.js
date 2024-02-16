@@ -14,18 +14,18 @@ const sliderData = [0,0,0,0,0,0,0,0];
 // To store an array of particle objects
 let particles = [];
 // Number of particles
-const num = 100;
+const num = 2000;
 // List of color array
 const colors = ["#EEEEEE", "#32E0C4", "#0D7377", "#212121", "#33C6FF"]; 
 
 // Scale factor for noise function
 const noiseScale = 0.20 / 50;
 // Adjusting the swirl effect factor
-const swirlFactor = 0.20; 
+const swirlFactor = 0.50; 
 
 function setup() {
     // Using the window width and height to create the canvas so it is full screen
-  createCanvas(950,1080);
+  createCanvas(950,1022);
   WebMidi
         .enable()
         .then(onEnabled)
@@ -120,7 +120,7 @@ function draw() {
     // Drawn an ellipse at the particle's position for visualisation 
 
     // SCALE OF DOTS
-    ellipse(p.position.x, p.position.y, 10 * sliderData[0]);
+    ellipse(p.position.x, p.position.y, 20 * sliderData[0]);
 
     // Calculate noise value for current particle's position and frame count 
     // AMOUNT OF PARTICLES
